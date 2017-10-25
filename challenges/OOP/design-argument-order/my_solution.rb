@@ -1,16 +1,16 @@
 class House
-  attr_reader :square_feet, :num_bedrooms, :num_baths, :cost
+  attr_reader :square_feet, :num_bedrooms, :num_baths, :cost, :sold
 
-  def initialize(address, square_feet, num_bedrooms = 3, num_baths = 2, cost = 320_000, down_payment = 0.20, sold = false, has_tenants = false)
-    @address = address
-    @square_feet = square_feet
-    @num_bedrooms = num_bedrooms
-    @num_baths = num_baths
-    @cost = cost
-    @down_payment = down_payment
-    @sold = sold
-    @short_sale = short_sale
-    @has_tenants = has_tenants
+  def initialize(args)
+    @address = args[:address]
+    @square_feet = args[:square_feet]
+    @num_bedrooms = args[:num_bedrooms] || 3
+    @num_baths = args[:num_baths] || 2
+    @cost = args[:cost]  ||320_000
+    @down_payment = args[:down_payment] || 0.20
+    @sold = args.fetch(:sold) { false }
+    @short_sale = args[:short_sale]
+    @has_tenants = args.fetch (:has_tenants) { false }
   end
 
   def obscure_address
@@ -33,7 +33,20 @@ end
 
 # Pon driver code aca para probar que todo este funcionando.
 ###### DRIVER CODE ########
-
-
-
-
+myHouse = House.new({
+   address: "Kr 54B # 128-39" ,
+   square_feet: "bla",
+   num_bedrooms: 4 ,
+   cost: 15000000000,
+   down_payment: 160000000,
+   short_sale: "NO",
+   has_tenants: false,
+  })
+  
+p myHouse.square_feet
+p myHouse.num_bedrooms
+p myHouse.num_baths
+p myHouse.cost
+p myHouse.to_s
+p myHouse.sold
+p myHouse.obscure_address
