@@ -1,3 +1,4 @@
+
 class CreditCard
 
  def initialize (num)
@@ -37,7 +38,6 @@ def check_card
 end
 
 end
-
 # 2. Solucion con Refactor
 
 

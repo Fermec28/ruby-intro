@@ -2,18 +2,22 @@ class Dad
   @@things = ['sofa', 'car', 'tv']
 
   def initialize
-    self
   end
 
-  def things
+  # Getter de @@things
+  def self.things
     @@things
   end
 end
 
-
 class Child < Dad
   @@things = ['juguetes']
+
+  # Getter de @@things
+  def self.things
+    @@things
+  end
 end
 
-p Dad.things
-p Child.things
+p Dad.things #=> [Dad, Object] // ['sofa', 'car', 'tv']
+p Child.things #=> [Child, Dad, Object] // ['juguetes']

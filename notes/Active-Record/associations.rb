@@ -2,7 +2,6 @@ class Product < ActiveRecord::Base
   attr_reader :name
   belongs_to :store
   # es igual a
-
   def store
     Store.find_by(id: 1)
   end
@@ -17,7 +16,6 @@ class Store < ActiveRecord::Base
   belongs_to :boss
   has_many :products
 
-  store.maneger
   def boss
     Manager.find_by(id: self.manager_id)
   end
@@ -26,48 +24,6 @@ class Store < ActiveRecord::Base
     Products.where(store_id: self.id)
   end
 end
-
-# Users
-
-
-
-# esquema Product
-
-# id | store_id
-
-# Esquema Manager
-
-# id
-
-# Esquema store
-
-# id | boss_id
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Product
 
@@ -129,9 +85,3 @@ class Store
     Products.where(store_id: self.id)
   end
 end
-
-# id | store_id
-#
-# id
-#
-# id | manager_id

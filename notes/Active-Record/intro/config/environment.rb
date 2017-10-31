@@ -4,6 +4,7 @@ require "rspec"
 require "rake"
 require "sqlite3"
 require "pathname"
+require "faker"
 
 
 # Identify the root directory for the application

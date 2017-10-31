@@ -34,7 +34,7 @@ Cuando lees las siguientes expresiones, considera que están caen en las 4 opera
 INSERT INTO students
 (first_name, last_name, gender, birthday, email, phone)
 VALUES
-('jane', 'smith', 'female', '1997-7-20', 'abc@hi.com', '123.321.2323')
+('jane', 'smith', 'female', '1997-7-20', 'abc@hi.com', '123.321.2323');
 
 -- puedo hacerlo sin incluir email y phone?
 INSERT INTO students

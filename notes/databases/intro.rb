@@ -7,7 +7,7 @@ require 'pry'
 
 # ---------------------------------------
 # Primero escojemos el nombre que le queremos dar a nuestra base de datos. Las bases dedatos de sqlite3 viven en un archivo. Este va a ser el nombre de ese archivo.
-DATABASE_NAME = 'first-sqlite-database'
+DATABASE_NAME = 'intro-students'
 
 # Requerimos el gem salite3. para que esto funcione tienes que instalarlo `gem install sqlite3`.
 require 'sqlite3'
@@ -53,14 +53,14 @@ print "inserting some data ... "
 
 db_connection.execute(<<-SQL
   insert into students
-  values ('german', 'escobar', 'Fence Lizard', 3);
+  values ('german', 'escobar', 'onix', 3);
   SQL
 )
 
 10.times do
   week = rand(12)
 
-  data = ['juan', 'gomez', 'Make It']
+  # data = ['juan', 'gomez', 'Make It']
   data = Faker::Name.first_name, Faker::Name.last_name, Faker::Company.bs
   labels = %w[fname lname company]
   fake_data = Hash[labels.map(&:to_sym).zip data.map{|d| d.gsub("'", "''")}]
@@ -70,6 +70,7 @@ db_connection.execute(<<-SQL
                # Faker::Name.last_name.gsub("'", "''"),
                # Faker::Company.bs.gsub("'", "''")
 
+  heredoc
   db_connection.execute(<<-SQL
     insert into students (lastname, firstname, cohort, week)
     values ('#{fake_data[:fname]}', '#{fake_data[:lname]}', '#{fake_data[:company]}', #{week});
@@ -88,6 +89,7 @@ print "selecting some data ... "
 
 # sacar todo de la base de datos
 results = db_connection.execute("select * from students;") # note that sometimes quotes are enough
+
 
 puts "done."
 puts "verifying selection ..."
@@ -142,7 +144,7 @@ puts "done."
 puts "verifying changes ..."
 puts
 
-verificar que los datos se actualizaron
+# verificar que los datos se actualizaron
 p  db_connection.execute("select * from students;")
 
 puts "and done."

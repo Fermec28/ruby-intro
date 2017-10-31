@@ -9,11 +9,13 @@ $db = SQLite3::Database.new 'company.db'
   order = [Time.at(rand * Time.now.to_i).strftime("%F %T"), rand(200..300), rand(8) + 1]
 
   $db.execute('insert into customers (first_name, last_name, email, address, city, state, zip) values (?,?,?,?,?,?,?)', customer)
+
   $db.execute('insert into orders (order_date, order_amount, customer_id) values (?,?,?)', order)
 end
 
 
-puts $db.execute('select count(*) from customers')
+result = $db.execute('select count(*) from customers')
+binding.pry
 puts $db.execute('select count(*) from orders')
 
 
@@ -25,20 +27,20 @@ join orders
 on customers.id = orders.customer_id
 SQL
 
+<<-SQL
+select first_name, last_name, order_date, order_amount
+from customers c
+left join orders o
+on c.id = o.customer_id
+SQL
+
+# All customers that have not place an order
 # Left Joins
 <<-SQL
 select first_name, last_name, order_date, order_amount
 from customers c
 left join orders o
-on c.customer_id = o.customer_id
-SQL
-
-# All customers that have not place an order
-<<-SQL
-select first_name, last_name, order_date, order_amount
-from customers c
-left join orders o
-on c.customer_id = o.customer_id
+on c.id = o.customer_id
 where order_date is NULL
 SQL
 
@@ -47,7 +49,7 @@ SQL
 select first_name, last_name, order_date, order_amount
 from customers c
 right join orders o
-on c.customer_id = o.customer_id
+on c.id = o.customer_id
 SQL
 
 # Orders with no customer
@@ -59,6 +61,24 @@ on c.customer_id = o.customer_id
 where first_name is NULL
 SQL
 
+
+ customers
+
+id name last_name
+1, angie, vanegas
+2, ferney, medina
+
+ orders
+
+id date amount customer_id
+1, 21342, 32412, 1
+2, 124213, 42314, 1
+
+
+ temproral-memoria
+
+id, name, last_name, id, date, amount
+1, angie, vanegas, 1, 21342, 32412
 
 
 

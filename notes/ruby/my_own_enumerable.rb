@@ -1,15 +1,23 @@
-e
-  word_array = %w[hola como estas]
+word_array = %w[hola como estas]
 
   # Returns a new array with the results of running block once for every element in enum.
 
+  # Programacion funcional
+  # Higher order function
   def my_map(array)
     result = []
     array.length.times do |element|
-      result << yield(element)
+      result << yield(array[element])
     end
     result
   end
+
+  # Callbacks
+  result = my_map([1,2,3]) do |num|
+    num + 1
+  end
+
+  result = [2,3,4]
 
   def my_map(array)
     result = []
@@ -37,7 +45,7 @@ e
     result
   end
 
-  def filter(array)
+  def my_filter(array)
     result = []
     array.each do |element|
       if yield(element)
@@ -46,6 +54,12 @@ e
     end
     result
   end
+
+  result = my_filter([1,2,3]) do |num|
+    num.even?
+  end
+
+  [2]
 
   # num_array.my_map() {}
   # my_map(num_array)
@@ -87,13 +101,13 @@ e
 
   # p  batman, "nanana"
 
-    def my_map_2(&block)
-      result = []
-      each do |element|
-        result << block.call(element)
-      end
-      result
+  def my_map_2(&block)
+    result = []
+    each do |element|
+      result << block.call(element)
     end
+    result
+  end
 
   def my_map_2(&block)
     result = []
@@ -170,25 +184,22 @@ def pad(array, min, fill = nil)
 end
 
 
+def my_reduce(arr, start = nil)
+  accu = 0
+  arr.each do |element|
+    accu = yield(accu, element)
+  end
+  accu
+end
 
-
-
-
-
-
-
+result = my_reduce([1,2,3], 0) do |accu, num|
+  accu += num
+end
 
 
 
 
 class Array
-  def reduce(start = nil)
-    accu = start
-    self.each do |element|
-      accu = yield(accu, element)
-    end
-    accu
-  end
 end
 
 # p [1,2,3,4].reduce(0) {|accu, n| accu + n}
@@ -197,7 +208,7 @@ end
 #   accu
 # }
 
-min = [1,2,3,4,5].reduce do |accu, element|
+min = [1,2,3,4,5].reduce() do |accu, element|
   accu > element ? element : accu
 end
 

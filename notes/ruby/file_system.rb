@@ -2,6 +2,8 @@
 
 # Para crear un archivo le pasamos el nombre del archivo y el modo con el que lo queremos crear.
 
+
+
 my_file = File.new("simple_file.txt", "w+")
 
 # http://ruby-doc.org/core-2.1.2/IO.html#method-c-new-label-IO+Open+Mode
@@ -13,7 +15,7 @@ my_file.close
 
 # Podemos abrir un archivo existente usando
 
-File.open(filename, mode)
+file = File.open(filename, mode)
 
 # El modo puede ser alguno de los siguientes
 
@@ -40,13 +42,16 @@ File.readlines("file_name") #-> Lee todo el archivo linea por linea y devuelve e
 
 
 # Esta forma garantiza que se cierre el archivo
-File.open("simple_file.txt", "w") { |file| file.puts("adding first line of text") }
+File.open("simple_file.txt", "w") do |file|
+  file.puts("adding first line of text")
+end
 
 # Alternativamente
 
 text = File.open("simple_file.txt",  "w+")
 text.puts("another example of writing to a file.")
-
+text.puts("another example of writing to a file.")
+text.puts("another example of writing to a file.")
 text.close
 
 # Para agregar mas texto a `simple_file.txt` podemos hacer esto:
@@ -59,7 +64,7 @@ File.readlines("simple_file.txt").each do |line|
   puts line
 end
 
-File.readlines("simple_file.txt").each_with_index do |line, line_num|
+File.readlines("simple_file.txt").each.with_index do |line, line_num|
   puts "#{line_num}: #{line}"
 end
 

@@ -18,7 +18,6 @@ class Mammal < Animal
     super
     @warm_blooded  = "Yes I'm warm blooded"
   end
-
 end
 
 class Amphibian < Animal

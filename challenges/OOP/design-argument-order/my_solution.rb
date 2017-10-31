@@ -1,16 +1,16 @@
 class House
-  attr_reader :square_feet, :num_bedrooms, :num_baths, :cost, :sold
+  attr_reader :square_feet, :num_bedrooms, :num_baths, :cost
 
-  def initialize(args)
-    @address = args[:address]
-    @square_feet = args[:square_feet]
-    @num_bedrooms = args[:num_bedrooms] || 3
-    @num_baths = args[:num_baths] || 2
-    @cost = args[:cost]  ||320_000
-    @down_payment = args[:down_payment] || 0.20
-    @sold = args.fetch(:sold) { false }
-    @short_sale = args[:short_sale]
-    @has_tenants = args.fetch (:has_tenants) { false }
+  def initialize(options)
+    @address = options[:address]
+    @name = options[:name]
+    @num_bedrooms = num_bedrooms
+    @num_baths = num_baths
+    @cost = cost
+    @down_payment = down_payment
+    @sold = sold
+    @short_sale = short_sale
+    @has_tenants = has_tenants
   end
 
   def obscure_address

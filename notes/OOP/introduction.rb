@@ -205,6 +205,9 @@ class Circle < Figure
   end
 end
 
+circle = Circle.new
+circle.to_s
+
 
 # require_relative '../modules/flyable.rb'
 

@@ -18,13 +18,10 @@ $db = SQLite3::Database.new 'hospital.db'
     SQL
   )
 
-    $db.execute('insert into appointments (doctor_id, patient_id, hour) values (?,?, ?)', appointment)
+  $db.execute('insert into appointments (doctor_id, patient_id, hour) values (?,?,?)', appointment)
+
   $db.execute('insert into patients (name, phone, age) values (?,?,?)', patient)
 end
-
-<<-SQL
-
-SQL
 
 # Print doctors
 print "Doctors"
@@ -54,6 +51,8 @@ on (
 SQL
 
 
+
+
 # Todos los pacientes que tienen una cita con un doctor que se especiliza en programacion
 <<-SQL
 select p.name, p.phone, d.name, d.area
@@ -66,7 +65,7 @@ on (
   d.id = a.doctor_id
 )
 where d.area = 'programmer'
-and p.name like '%l%';
+and p.name like 'l%';
 SQL
 
 

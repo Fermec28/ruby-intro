@@ -1,7 +1,7 @@
 # Expresiones regulares:
 
 # Nos sirven para encontrar patrones en strings, tales como placas de carros, tarjetas de credito, correos electronicos o culquier cosa que busquemos.
-
+//
 
 # Algunos patrones:
 /\d/ #-> Cualquier digito
@@ -32,11 +32,12 @@
 
 #Ejercicio
 
+"stostt"
+"sstt"
+"stt"
 # Crea una expresion regular que haga match a
 # Un cuadrado seguido por un triangulo y un circulo opcionales seguido por un cuadrado opcional seguido por 2 triangulos seguido por el final del string
 
-
-mentor\s(\w*)\sage\s(\d*)
 
 #Respuestax
 /s(tc)?s?t{2}\z/

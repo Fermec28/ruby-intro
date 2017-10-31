@@ -12,7 +12,6 @@ require 'pry'
 def load_task(file)
   tareas = []
   if File.exists?(file)
-    file = File.open(file, 'r')
     File.open(file, 'r') do |file|
       file.each do |line|
         line = line.split(',').map(&:strip)

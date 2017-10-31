@@ -1,5 +1,4 @@
 class BattleShip < Ship
-
   def initialize
     @length = 4
     @hits = 0

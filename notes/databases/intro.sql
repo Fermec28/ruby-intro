@@ -1,4 +1,9 @@
+-- Patron Adaptador
+-- ORM
+
+
 -- SQL diferentes versiones de ORM (Active Record)
+
 -- Patron adaptador
 
 -- 4 operactiones
@@ -11,10 +16,15 @@
 -- CRUD Recursos > Tabla
 
 -- Creating table
+DROP TABLE IF EXISTS directors;
+
+
 create table directors (
    id serial primary key,
    name varchar(255) unique not null
 );
+
+DROP TABLE IF EXISTS movies ;
 
 CREATE TABLE movies (
    id serial primary key,
@@ -43,30 +53,30 @@ insert into movies (title, release_date, count_stars, director_id) values (
 
 --Filtering values
 
--- select title from movies
+select * from movies
 
--- select title, release_date from movies
+select title, release_date from movies
 
--- select title, release_date as release from movies
+select title, release_date as release from movies
 
--- select title,
--- release_date as release
--- from movies
--- where release > '01-01-1975'
+select title,
+release_date as release
+from movies
+where release > '01-01-1975'
 
--- select title,
--- release_date as release,
--- count_stars
--- from movies
--- where release_date > '01-01-1975'
--- and count_stars = 3
+select title,
+release_date as release,
+count_stars
+from movies
+where release_date > '01-01-1975'
+and count_stars = 3
 
--- select *
--- from movies
--- where release_date > '01-01-1975'
--- and count_stars = 3
+select *
+from movies
+where release_date > '01-01-1975'
+and count_stars = 3
 
--- select * from movies limit 100
+select * from movies limit 100
 
 -- --Aggregation
 
@@ -149,20 +159,20 @@ insert into movies (title, release_date, count_stars, director_id) values (
 -- --Updating
 
 -- -- Updates all records count_stars value
--- update movies
--- set count_stars=1;
+update movies
+set count_stars=1;
 
 -- -- Update only a movie wit the title kill bill
--- update movies
--- set count_stars=5
--- where title = 'kill bill';
+update movies
+set count_stars=5
+where title = 'kill bill';
 
 -- -- Sort
 
 -- -- Sort first by friend_count, if tie then by name
--- select *
--- from friends
--- order by friend_count, name;
+select *
+from friends
+order by friend_count, name;
 
 -- Constrain in combination of two fields
 -- alter table movies add constraint unique_title_and_release unique(title, release_date);
@@ -178,11 +188,11 @@ insert into movies (title, release_date, count_stars, director_id) values (
 -- --Deleting
 
 -- -- Delete movies with 5 stars
--- delete from movies
--- where count_stars = 5;
+delete from movies
+where count_stars = 5;
 
 -- -- Delete several things at once
--- delete from movies where id in (2,4)
+delete from movies where id in (2,4)
 
 -- -- Delete all movies
--- delete from movies
+delete from movies
